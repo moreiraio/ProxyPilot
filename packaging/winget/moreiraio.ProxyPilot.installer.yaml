@@ -1,0 +1,18 @@
+# Submit as a pull request to https://github.com/microsoft/winget-pkgs under
+# manifests/m/moreiraio/ProxyPilot/<version>/ — this file plus the locale and
+# version manifests beside it. Validate first with:
+#     winget validate --manifest .\packaging\winget\
+# and install-test with:
+#     winget install --manifest .\packaging\winget\
+PackageIdentifier: moreiraio.ProxyPilot
+PackageVersion: 0.1.1
+InstallerType: portable
+Commands:
+  - ProxyPilot
+ReleaseDate: 2026-08-13
+Installers:
+  - Architecture: x64
+    InstallerUrl: https://github.com/moreiraio/ProxyPilot/releases/download/v0.1.1/ProxyPilot.exe
+    InstallerSha256: AF03D492C8EE9A40B29D7B7D978633454BD5FB443B654CB3A7AC33DA8CE2464E
+ManifestType: installer
+ManifestVersion: 1.6.0

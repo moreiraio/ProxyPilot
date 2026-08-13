@@ -1,0 +1,39 @@
+{
+    "version": "0.1.1",
+    "description": "A native Win32 intercepting HTTP proxy for debugging traffic. One executable, no installer, no runtime, no elevation.",
+    "homepage": "https://moreiraio.github.io/ProxyPilot/",
+    "license": {
+        "identifier": "Freeware",
+        "url": "https://github.com/moreiraio/ProxyPilot/blob/main/LICENSE.md"
+    },
+    "architecture": {
+        "64bit": {
+            "url": "https://github.com/moreiraio/ProxyPilot/releases/download/v0.1.1/ProxyPilot.exe",
+            "hash": "af03d492c8ee9a40b29d7b7d978633454bd5fb443b654cb3a7ac33da8ce2464e"
+        }
+    },
+    "bin": "ProxyPilot.exe",
+    "shortcuts": [
+        [
+            "ProxyPilot.exe",
+            "ProxyPilot"
+        ]
+    ],
+    "persist": [
+        "config.json"
+    ],
+    "notes": [
+        "Settings land in a config.json beside the executable, inside the Scoop app folder.",
+        "The root certificate is minted on first use, only when you turn decryption on, and trusting it stays a separate explicit act."
+    ],
+    "checkver": {
+        "github": "https://github.com/moreiraio/ProxyPilot"
+    },
+    "autoupdate": {
+        "architecture": {
+            "64bit": {
+                "url": "https://github.com/moreiraio/ProxyPilot/releases/download/v$version/ProxyPilot.exe"
+            }
+        }
+    }
+}

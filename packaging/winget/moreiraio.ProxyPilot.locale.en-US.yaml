@@ -1,0 +1,41 @@
+PackageIdentifier: moreiraio.ProxyPilot
+PackageVersion: 0.1.1
+PackageLocale: en-US
+Publisher: Vitor Moreira
+PublisherUrl: https://github.com/moreiraio
+PublisherSupportUrl: https://github.com/moreiraio/ProxyPilot/issues
+PackageName: ProxyPilot
+PackageUrl: https://moreiraio.github.io/ProxyPilot/
+License: Proprietary
+LicenseUrl: https://github.com/moreiraio/ProxyPilot/blob/main/LICENSE.md
+Copyright: Copyright (c) 2026 Vitor Moreira
+ShortDescription: A native Win32 intercepting HTTP proxy for debugging traffic.
+Description: |-
+  ProxyPilot listens on 127.0.0.1:8888 as an explicit proxy. Point a client at it
+  and every HTTP transaction becomes a row: method, host, URL, status, body sizes
+  and timings, with the request and response bytes retained for inspection.
+
+  HTTPS decryption is a separate opt-in, and trusting the generated root is a
+  separate decision again. HTTP/2, WebSocket frames, Server-Sent Events and gRPC
+  are decoded; gzip, Brotli and Zstandard bodies are decoded in-house and
+  pretty-printed at display time, so the stored bytes stay exactly what arrived.
+  Breakpoints hold traffic mid-flight, AutoResponder rules answer it locally, and
+  a composer replays any captured request.
+
+  One executable, 2.6 MB. No installer, no .NET, no Electron, no DLLs, no account
+  and no telemetry, and it never asks for elevation.
+Moniker: proxypilot
+Tags:
+  - debugging
+  - developer-tools
+  - fiddler
+  - har
+  - http
+  - http-proxy
+  - https
+  - network
+  - proxy
+  - web-debugging
+ReleaseNotesUrl: https://github.com/moreiraio/ProxyPilot/releases/tag/v0.1.1
+ManifestType: defaultLocale
+ManifestVersion: 1.6.0
