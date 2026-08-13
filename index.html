@@ -263,13 +263,6 @@ section { padding: 92px 0; }
 }
 
 /* limits */
-.limits { background: var(--bg-2); border-block: 1px solid var(--line); }
-.limits ul { margin: 30px 0 0; padding: 0; list-style: none; columns: 2; column-gap: 44px; }
-.limits li { break-inside: avoid; margin-bottom: 14px; color: var(--dim); font-size: 0.95rem; padding-left: 18px; position: relative; }
-.limits li::before { content: "\2013"; position: absolute; left: 0; color: var(--muted); }
-.limits strong { color: var(--text); font-weight: 560; }
-@media (max-width: 780px) { .limits ul { columns: 1; } }
-
 /* download */
 .dl { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 16px; margin-top: 40px; }
 .dl-item {
@@ -334,7 +327,11 @@ dialog.lightbox figcaption {
     </a>
     <nav>
       <a class="hide-sm" href="#features">Features</a>
-      <a class="hide-sm" href="#limits">Limits</a>
+      <!-- The one nav item that leaves the site, so it names where it goes:
+           a control that opens a payment page should say so before it is
+           pressed, and there is no room in a bar to print the URL the way the
+           footer does. -->
+      <a href="#" data-dl="donate" title="paypal.me/vrmoreira">Donate</a>
       <a href="#download">Download</a>
     </nav>
   </div>
@@ -651,31 +648,6 @@ dialog.lightbox figcaption {
         </button>
       </div>
     </div>
-  </div>
-</section>
-
-<!-- --------------------------------------------------------------- limits -->
-<section id="limits" class="limits">
-  <div class="wrap">
-    <div class="section-head reveal">
-      <span class="eyebrow">Honest edges</span>
-      <h2>What it does not do.</h2>
-      <p>
-        Most of these are decisions rather than gaps. They are here for the same
-        reason the status bar counts the bypass list: a tool that quietly shows
-        less than what happened is the failure this program is written against.
-      </p>
-    </div>
-    <ul class="reveal">
-      <li><strong>Windows only.</strong> x64, Windows 10 or later. No macOS, no Linux.</li>
-      <li><strong>No HTTP/3.</strong> QUIC is UDP with its own congestion control and its own TLS integration, none of which Schannel exposes.</li>
-      <li><strong>The capture is not persisted.</strong> It lives in a memory ring and is gone on exit. HAR export is how it leaves.</li>
-      <li><strong>Columns do not sort.</strong> The list is in capture order, permanently &mdash; the filter grammar answers the same questions instead.</li>
-      <li><strong>No regex in search.</strong> The prefixes cover what regex would be reached for, and they AND rather than OR.</li>
-      <li><strong>No SAZ.</strong> HAR 1.2 goes both ways; Fiddler's own archive format does not.</li>
-      <li><strong>No cloud, no team features, no account.</strong> There is nothing to sign in to.</li>
-      <li><strong>Bounded, and it says so.</strong> Decoded bodies cap at 4&nbsp;MB and formatted output at 8&nbsp;MB; the bytes are still captured in full.</li>
-    </ul>
   </div>
 </section>
 
