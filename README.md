@@ -47,6 +47,7 @@ curl -x 127.0.0.1:8888 https://example.com
 | Elevation | Never asked for |
 | Install | None. `config.json` lands beside the executable |
 | Cost | Free, and no account |
+| Licence | Free to use, including commercially — see [LICENSE.md](LICENSE.md) |
 
 ## The root certificate
 
@@ -78,6 +79,21 @@ The source is not public.
 |---|---|
 | `index.html` | The download page, served by GitHub Pages |
 | `img/` | Screenshots of the program, captured from real traffic |
+| `LICENSE.md` | What you may do with the build you downloaded |
+| `third-party/` | Licence texts for the components compiled into the executable |
+
+## Verifying the download
+
+The executable is not code-signed, so Windows will call it an unrecognised app
+the first time you run it. Every release publishes the SHA-256 of its binary in
+the release notes, so the warning is the only thing you have to take on trust:
+
+```powershell
+Get-FileHash .\ProxyPilot.exe
+```
+
+VirusTotal addresses a file by that same hash, so a report for any release can
+be reached at `https://www.virustotal.com/gui/file/<sha-256>`.
 
 ## Support the work
 
