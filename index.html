@@ -9,6 +9,24 @@
 <meta property="og:title" content="ProxyPilot">
 <meta property="og:description" content="A native Win32 intercepting HTTP proxy. One executable, no installer, no runtime.">
 <meta property="og:type" content="website">
+
+<!--
+  The one thing on this page that reaches another host. It measures visits to
+  the page, and nothing else: it is not in the program, it sees no captured
+  traffic, and installing ProxyPilot puts nothing like it on the machine. The
+  colophon at the foot of the page says so rather than leaving the claim about
+  the program to be read as a claim about the page.
+-->
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-9FKBH1CMEF"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-9FKBH1CMEF');
+</script>
+
 <style>
 /* --------------------------------------------------------------------------
    The palette is the program's own dark theme, lifted from src/types.h, so the
@@ -606,8 +624,8 @@ dialog.lightbox figcaption {
       </div>
       <div class="card reveal">
         <span class="tag">Privacy</span>
-        <h3>Nothing leaves this machine</h3>
-        <p>No account, no telemetry, no update check, no network calls of its own. It works with no network connection at all.</p>
+        <h3>Nothing leaves your machine</h3>
+        <p>The program has no account, no telemetry and no update check, and makes no network calls of its own. It works with no network connection at all.</p>
       </div>
     </div>
   </div>
@@ -689,7 +707,7 @@ dialog.lightbox figcaption {
       <div><dt>Elevation</dt><dd>Never asked for</dd></div>
       <div><dt>Default listener</dt><dd><span class="mono">127.0.0.1:8888</span></dd></div>
       <div><dt>Cost</dt><dd>Free, and no account</dd></div>
-      <div><dt>Network calls of its own</dt><dd>None</dd></div>
+      <div><dt>Telemetry in the program</dt><dd>None</dd></div>
     </dl>
   </div>
 </section>
@@ -721,8 +739,11 @@ dialog.lightbox figcaption {
     </div>
     <p class="colophon">
       ProxyPilot <span data-version>v0.1.0</span>. Free, and no account.
-      No telemetry, no update check, and it makes no network calls of its own.
-      This page loads nothing from anywhere else either.
+      The program has no telemetry, no update check, and makes no network calls
+      of its own &mdash; that is a claim about the program, so here is the one
+      about this page: it uses Google Analytics to count visits. That runs here
+      and nowhere else. It is not in the build, it never sees a byte you
+      capture, and installing ProxyPilot puts nothing like it on your machine.
     </p>
   </div>
 </footer>
