@@ -1,0 +1,65 @@
+name: Traffic it could not capture
+description: A site, app or protocol that does not appear, or appears wrong.
+labels: ["capture"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Traffic that goes missing is the failure this program is written
+        against, so these are worth reporting even when the cause turns out to
+        be certificate pinning at the far end and nothing this tool can fix.
+
+  - type: input
+    id: version
+    attributes:
+      label: Version
+      placeholder: v0.1.1
+    validations:
+      required: true
+
+  - type: input
+    id: target
+    attributes:
+      label: What were you trying to capture?
+      description: The application or site, and the host if you know it.
+      placeholder: The Contoso desktop app, talking to api.contoso.com
+    validations:
+      required: true
+
+  - type: dropdown
+    id: shape
+    attributes:
+      label: What does the list show?
+      options:
+        - "Nothing at all - no rows appear"
+        - "A tunnel row that stays a tunnel with decryption on"
+        - "Rows appear, but a body is unreadable or wrong"
+        - "Rows appear, but the client reports an error"
+        - "Something else"
+    validations:
+      required: true
+
+  - type: textarea
+    id: status
+    attributes:
+      label: What does the status bar say?
+      description: |
+        Copy the chips along the bottom - `decrypting`, `root NOT trusted`,
+        `3 hosts bypassed`, `browsers only, 12 not recorded`, and so on. This is
+        usually the whole answer.
+
+  - type: textarea
+    id: client_error
+    attributes:
+      label: What the client said
+      description: The error the application or browser showed, verbatim.
+      render: text
+
+  - type: checkboxes
+    id: checks
+    attributes:
+      label: Already checked
+      options:
+        - label: Decrypt HTTPS is on, and the root certificate is trusted.
+        - label: The host is not in Settings > Bypass, and its process is not either.
+        - label: The client is actually pointed at 127.0.0.1:8888 (or the System proxy toggle is on).

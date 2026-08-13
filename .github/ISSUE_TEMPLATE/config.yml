@@ -1,0 +1,8 @@
+blank_issues_enabled: true
+contact_links:
+  - name: Download and full feature list
+    url: https://moreiraio.github.io/ProxyPilot/
+    about: What it does, what it deliberately does not, and the current build.
+  - name: Email the author
+    url: mailto:vitor.moreira@gmail.com
+    about: Questions, corrections, or anything you would rather not post in public.

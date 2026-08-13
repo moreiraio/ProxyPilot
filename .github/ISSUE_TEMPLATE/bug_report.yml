@@ -1,0 +1,77 @@
+name: Bug report
+description: Something the program did wrong, or did not do at all.
+labels: ["bug"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for taking the time. The three fields below are the ones that
+        usually decide whether a report can be reproduced, so please fill them
+        in even when the answer feels obvious.
+
+  - type: input
+    id: version
+    attributes:
+      label: Version
+      description: From the title bar, or Settings > About.
+      placeholder: v0.1.1
+    validations:
+      required: true
+
+  - type: dropdown
+    id: decrypt
+    attributes:
+      label: Was Decrypt HTTPS on?
+      options:
+        - "Yes"
+        - "No"
+        - "Not sure"
+    validations:
+      required: true
+
+  - type: input
+    id: client
+    attributes:
+      label: What was the client?
+      description: curl, a browser, a phone, an application - and which one.
+      placeholder: Chrome 139, via the System proxy toggle
+    validations:
+      required: true
+
+  - type: textarea
+    id: what
+    attributes:
+      label: What happened, and what you expected instead
+      description: |
+        If a particular site or request is involved, name it if you can. If a
+        session row is wrong, say which column.
+    validations:
+      required: true
+
+  - type: textarea
+    id: steps
+    attributes:
+      label: Steps to reproduce
+      placeholder: |
+        1. Start ProxyPilot
+        2. Turn on ...
+        3. Run curl -x 127.0.0.1:8888 https://...
+        4. The row shows ...
+
+  - type: textarea
+    id: crashlog
+    attributes:
+      label: Crash log, if it crashed
+      description: |
+        A crash leaves `ProxyPilot-crash-<date>-<time>.txt` beside
+        `config.json`. It records addresses and module offsets only - never a
+        memory dump - so nothing you captured is in it. Paste it here.
+      render: text
+
+  - type: checkboxes
+    id: privacy
+    attributes:
+      label: Before you post
+      options:
+        - label: I have removed anything private from what I pasted (tokens, cookies, internal hostnames, request bodies).
+          required: true

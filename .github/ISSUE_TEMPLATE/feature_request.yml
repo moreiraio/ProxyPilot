@@ -1,0 +1,33 @@
+name: Feature request
+description: Something it should do, or should do differently.
+labels: ["enhancement"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Some things are missing on purpose - no sorting, no SAZ, no HTTP/3, no
+        capture persistence - and the download page's
+        [Coming from Fiddler](https://moreiraio.github.io/ProxyPilot/#fiddler)
+        section lists those with their reasons. Asking anyway is fine; a reason
+        that no longer holds is worth hearing.
+
+  - type: textarea
+    id: problem
+    attributes:
+      label: What are you trying to do?
+      description: The task, not the feature. It often has an answer already.
+    validations:
+      required: true
+
+  - type: textarea
+    id: proposal
+    attributes:
+      label: What would it look like in the program?
+      description: Where it would live, and what it would say.
+
+  - type: input
+    id: elsewhere
+    attributes:
+      label: Does another tool do this?
+      description: Naming it saves a lot of guessing.
+      placeholder: Fiddler Classic's ... / Charles' ...
