@@ -224,9 +224,11 @@ header {
 .hero-shot { margin-top: 58px; }
 .hero-shot .shot { box-shadow: 0 30px 90px rgba(0,0,0,0.6); }
 
-/* The recording. Capped at the width it was filmed at - upscaling a GIF is a
-   blur, and the point of it is that the rows are readable. */
-.film { margin: 0 auto; max-width: 800px; }
+/* The recording, capped at the width it was filmed at. The cap is the point:
+   a GIF shown at any width but its own is a resampled GIF, and the rows it
+   exists to show stop being rows. 1160 is this page's content column with its
+   padding taken off, so on a desktop it lands pixel for pixel. */
+.film { margin: 0 auto; max-width: 1160px; }
 .film img {
   display: block; width: 100%; height: auto;
   border: 1px solid var(--line);
@@ -465,7 +467,7 @@ dialog.lightbox figcaption {
   -->
   <div class="wrap hero-shot reveal">
     <figure class="film">
-      <img src="img/demo.gif" width="800" height="500" alt="A recording of the ProxyPilot window. The session list fills with HTTPS CONNECT tunnels that cannot be read. Decrypt HTTPS is switched on in the toolbar, the status bar reads decrypting, and the same requests arrive again as GET rows with real paths. The last row is selected and the inspector shows its headers and a formatted JSON body.">
+      <img src="img/demo.gif" width="1160" height="720" alt="A recording of the ProxyPilot window. The session list fills with HTTPS CONNECT tunnels that cannot be read. Decrypt HTTPS is switched on in the toolbar, the status bar reads decrypting, and the same requests arrive again as GET rows with real paths. The last row is selected and the inspector shows its headers and a formatted JSON body.">
       <figcaption>
         Filmed from the program: tunnels you cannot read, decryption switched
         on, and the same traffic arriving as requests with bodies.
