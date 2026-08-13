@@ -3,12 +3,25 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>ProxyPilot &mdash; a native Win32 intercepting HTTP proxy</title>
-<meta name="description" content="Point a client at 127.0.0.1:8888 and every request and response is captured, listed and inspectable. One executable, no installer, no runtime, no elevation.">
+<title>ProxyPilot &mdash; a free HTTP debugging proxy for Windows</title>
+<meta name="description" content="A native Win32 intercepting HTTP proxy, and an alternative to Fiddler Classic. Point a client at 127.0.0.1:8888 and every request and response is captured, listed and inspectable. One 2.6 MB executable: no installer, no runtime, no account, no elevation.">
 <link rel="icon" href="favicon.ico">
-<meta property="og:title" content="ProxyPilot">
-<meta property="og:description" content="A native Win32 intercepting HTTP proxy. One executable, no installer, no runtime.">
+<link rel="canonical" href="https://moreiraio.github.io/ProxyPilot/">
+
+<!--
+  The card a link to this page draws when it is pasted somewhere. Without an
+  image the page arrives in a chat or a timeline as a line of grey text, which
+  for a program whose whole argument is what its window looks like throws away
+  the argument. The hero shot is the same picture the page opens with, so the
+  card and the page agree.
+-->
+<meta property="og:title" content="ProxyPilot &mdash; a free HTTP debugging proxy for Windows">
+<meta property="og:description" content="See every request the moment it happens. One 2.6 MB executable: no installer, no runtime, no account, no elevation.">
 <meta property="og:type" content="website">
+<meta property="og:url" content="https://moreiraio.github.io/ProxyPilot/">
+<meta property="og:image" content="https://moreiraio.github.io/ProxyPilot/img/hero.png">
+<meta property="og:image:alt" content="The ProxyPilot window: captured sessions on the left, a decrypted JSON response formatted in the inspector on the right.">
+<meta name="twitter:card" content="summary_large_image">
 
 <!--
   The one thing on this page that reaches another host. It measures visits to
@@ -211,6 +224,20 @@ header {
 .hero-shot { margin-top: 58px; }
 .hero-shot .shot { box-shadow: 0 30px 90px rgba(0,0,0,0.6); }
 
+/* The recording. Capped at the width it was filmed at - upscaling a GIF is a
+   blur, and the point of it is that the rows are readable. */
+.film { margin: 0 auto; max-width: 800px; }
+.film img {
+  display: block; width: 100%; height: auto;
+  border: 1px solid var(--line);
+  border-radius: var(--r-lg);
+  box-shadow: 0 30px 90px rgba(0,0,0,0.6);
+}
+.film figcaption {
+  margin-top: 16px; color: var(--muted); font-size: 0.9rem;
+  max-width: 560px; margin-inline: auto;
+}
+
 /*
  * On a phone the window shots scroll inside their own frame instead of
  * shrinking. Fitted to 340px a 1440px capture is a grey smear - the rows it
@@ -293,6 +320,46 @@ section { padding: 92px 0; }
 .dl-item p { color: var(--dim); font-size: 0.9rem; flex: 1; }
 .dl-item .btn { align-self: flex-start; margin-top: 4px; }
 
+/*
+ * What Windows will say the first time, said here first. The executable is not
+ * code-signed, so SmartScreen calls it unrecognised - and a warning the page
+ * did not mention reads as something being hidden, while the same warning
+ * predicted reads as the page telling the truth. It sits above the download
+ * button rather than below it for that reason. Grey, not amber: the program's
+ * own rule, that a state you chose is never dressed up as a failure.
+ */
+.verify {
+  margin-top: 34px;
+  background: var(--bg-2);
+  border: 1px solid var(--line);
+  border-radius: var(--r-lg);
+  padding: 22px 24px;
+}
+.verify h3 { font-size: 1.02rem; margin-bottom: 8px; }
+.verify p { color: var(--dim); font-size: 0.93rem; }
+.verify p + p { margin-top: 10px; }
+.verify .hash {
+  margin-top: 14px;
+  font-family: var(--mono); font-size: 0.8rem; color: var(--muted);
+  word-break: break-all; line-height: 1.5;
+}
+.verify .hash b { color: var(--dim); font-weight: 600; letter-spacing: 0.06em; }
+
+/* comparison table */
+.cmp-scroll { margin-top: 38px; overflow-x: auto; border: 1px solid var(--line); border-radius: var(--r-lg); }
+table.cmp { border-collapse: collapse; width: 100%; min-width: 680px; font-size: 0.93rem; }
+table.cmp th, table.cmp td { padding: 13px 18px; text-align: left; border-bottom: 1px solid var(--line-soft); vertical-align: top; }
+table.cmp thead th { background: var(--bg-2); color: var(--text); font-weight: 600; font-size: 0.9rem; }
+table.cmp tbody th { color: var(--dim); font-weight: 500; }
+table.cmp td { color: var(--dim); }
+table.cmp tbody tr:last-child th, table.cmp tbody tr:last-child td { border-bottom: 0; }
+table.cmp .yes { color: var(--text); }
+
+.honest { margin-top: 34px; display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 18px; }
+.honest .card h3 { font-size: 1.02rem; }
+.honest ul { margin: 12px 0 0; padding-left: 20px; color: var(--dim); font-size: 0.93rem; }
+.honest li { margin-top: 7px; }
+
 .specs { margin-top: 40px; display: grid; grid-template-columns: repeat(auto-fit, minmax(190px, 1fr)); gap: 1px; background: var(--line-soft); border: 1px solid var(--line-soft); border-radius: var(--r-md); overflow: hidden; }
 .specs div { background: var(--bg); padding: 18px 20px; }
 .specs dt { color: var(--muted); font-size: 0.78rem; letter-spacing: 0.07em; text-transform: uppercase; }
@@ -345,6 +412,7 @@ dialog.lightbox figcaption {
     </a>
     <nav>
       <a class="hide-sm" href="#features">Features</a>
+      <a class="hide-sm" href="#fiddler">vs Fiddler</a>
       <!-- The one nav item that leaves the site, so it names where it goes:
            a control that opens a payment page should say so before it is
            pressed, and there is no room in a bar to print the URL the way the
@@ -384,10 +452,25 @@ dialog.lightbox figcaption {
     </div>
   </div>
 
+  <!--
+    The recording, not a still, because the argument this page has to make is a
+    sequence: HTTPS arrives unreadable, you turn decryption on, the same traffic
+    comes back as requests with bodies. A screenshot can only show the end of
+    that and asks to be believed about the middle.
+
+    It is a figure rather than one of the click-to-zoom .shot buttons: the GIF
+    is already smaller than the window it was filmed from, so a lightbox would
+    open it at the size it is and swallow the click for nothing. The still shots
+    further down are where zooming earns its keep.
+  -->
   <div class="wrap hero-shot reveal">
-    <button class="shot" type="button" data-caption="The session list, with a decrypted HTTPS response pretty-printed in the inspector">
-      <img src="img/hero.png" width="1440" height="900" alt="The ProxyPilot window: a list of captured sessions on the left showing status, method, host, path, body size and timing, and an inspector on the right showing a JSON response body formatted and syntax-coloured.">
-    </button>
+    <figure class="film">
+      <img src="img/demo.gif" width="800" height="500" alt="A recording of the ProxyPilot window. The session list fills with HTTPS CONNECT tunnels that cannot be read. Decrypt HTTPS is switched on in the toolbar, the status bar reads decrypting, and the same requests arrive again as GET rows with real paths. The last row is selected and the inspector shows its headers and a formatted JSON body.">
+      <figcaption>
+        Filmed from the program: tunnels you cannot read, decryption switched
+        on, and the same traffic arriving as requests with bodies.
+      </figcaption>
+    </figure>
   </div>
 </section>
 
@@ -669,6 +752,144 @@ dialog.lightbox figcaption {
   </div>
 </section>
 
+<hr class="rule">
+
+<!--
+  The comparison the reader is already making. Fiddler Classic is where almost
+  everyone arriving here has come from, so the page either answers the question
+  or leaves it to be answered somewhere less careful. It is written to lose
+  honestly where it loses: the two columns saying what each Fiddler still does
+  better are not modesty, they are the reason the rest of the table can be
+  believed. Nothing here is a promise about a future build - it describes this
+  one.
+-->
+<section id="fiddler">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <span class="eyebrow">Coming from Fiddler</span>
+      <h2>Fiddler Classic's job, without the install.</h2>
+      <p>
+        Classic is in maintenance and its users are pointed at Fiddler
+        Everywhere, which is a subscription and asks you to sign in. ProxyPilot
+        does the debugging-proxy part of that job as one executable, free, with
+        no account. It is narrower in some places, and those places are listed
+        here rather than left for you to find.
+      </p>
+    </div>
+
+    <div class="cmp-scroll reveal">
+      <table class="cmp">
+        <thead>
+          <tr>
+            <th scope="col">&nbsp;</th>
+            <th scope="col">ProxyPilot</th>
+            <th scope="col">Fiddler Classic</th>
+            <th scope="col">Fiddler Everywhere</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <th scope="row">Cost</th>
+            <td class="yes">Free</td>
+            <td>Free</td>
+            <td>Paid subscription</td>
+          </tr>
+          <tr>
+            <th scope="row">Account required</th>
+            <td class="yes">No</td>
+            <td>No</td>
+            <td>Yes &mdash; sign-in is part of the product</td>
+          </tr>
+          <tr>
+            <th scope="row">Install</th>
+            <td class="yes">Copy one 2.6&nbsp;MB exe</td>
+            <td>Installer, .NET Framework</td>
+            <td>Installer, per platform</td>
+          </tr>
+          <tr>
+            <th scope="row">Elevation</th>
+            <td class="yes">Never asked for</td>
+            <td>Needed for machine-wide cert trust</td>
+            <td>Not for normal use</td>
+          </tr>
+          <tr>
+            <th scope="row">System proxy on by default</th>
+            <td class="yes">No &mdash; always an explicit opt-in</td>
+            <td>Yes &mdash; captures on launch</td>
+            <td>Yes &mdash; system capture is the default</td>
+          </tr>
+          <tr>
+            <th scope="row">HTTPS decryption</th>
+            <td class="yes">Yes, per-host certificates</td>
+            <td>Yes</td>
+            <td>Yes</td>
+          </tr>
+          <tr>
+            <th scope="row">HTTP/2, WebSocket, SSE, gRPC</th>
+            <td class="yes">All four, decoded</td>
+            <td>Partial</td>
+            <td>Yes</td>
+          </tr>
+          <tr>
+            <th scope="row">Zstandard bodies</th>
+            <td class="yes">Yes, built in</td>
+            <td>No</td>
+            <td>No</td>
+          </tr>
+          <tr>
+            <th scope="row">Scripting</th>
+            <td class="yes">JavaScript, FiddlerScript's reach</td>
+            <td>FiddlerScript + .NET add-ons</td>
+            <td>Rules with scripted actions</td>
+          </tr>
+          <tr>
+            <th scope="row">macOS and Linux</th>
+            <td>No &mdash; Windows only</td>
+            <td>No</td>
+            <td class="yes">Yes</td>
+          </tr>
+          <tr>
+            <th scope="row">Sharing captures with a team</th>
+            <td>No</td>
+            <td>No</td>
+            <td class="yes">Yes</td>
+          </tr>
+          <tr>
+            <th scope="row">Telemetry / network calls of its own</th>
+            <td class="yes">None</td>
+            <td>Some</td>
+            <td>Yes &mdash; it is an account product</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="honest">
+      <div class="card reveal">
+        <h3>Where ProxyPilot deliberately does less</h3>
+        <ul>
+          <li>No .NET add-on ecosystem. Scripting matches FiddlerScript's reach; a compiled plugin model is Fiddler's and is not being chased.</li>
+          <li>No sorting the session list. It is in capture order, because capture order is the fact being shown; the find field answers what a sort was wanted for.</li>
+          <li>No SAZ files. HAR 1.2 goes both ways instead.</li>
+          <li>No HTTP/3 &mdash; QUIC needs a UDP stack and a TLS integration Schannel does not expose.</li>
+          <li>No capture persistence. The ring is memory, taken once at startup.</li>
+          <li>No accessibility tree. A software-rendered framebuffer has nothing to expose one from. The keyboard reaches everything; a screen reader still has nothing to read.</li>
+        </ul>
+      </div>
+      <div class="card reveal">
+        <h3>Where it does something neither Fiddler does</h3>
+        <ul>
+          <li>A true bypass: a named host or process is carried as though the proxy were not in the path &mdash; and the status bar counts it, because an incomplete capture must never be quiet.</li>
+          <li>A choice and a failure are never spelled the same way. Amber means "not the way you asked", never bookkeeping.</li>
+          <li>Every cap reports its true totals rather than presenting a prefix as the whole.</li>
+          <li>Five separate opt-ins &mdash; decryption, trust, HTTP/2, remote capture, the system proxy &mdash; and turning one on never turns another on.</li>
+          <li>No account, no telemetry, no update check, and no network calls of its own.</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
 <!-- ------------------------------------------------------------- download -->
 <section id="download">
   <div class="wrap">
@@ -679,6 +900,28 @@ dialog.lightbox figcaption {
         There is nothing to install and nothing to configure. Start it, point a
         client at <code class="mono">127.0.0.1:8888</code>, and the rows appear.
       </p>
+    </div>
+
+    <div class="verify reveal">
+      <h3>Windows will call it an unrecognised app</h3>
+      <p>
+        It is not code-signed &mdash; a certificate an independent program has to
+        rent yearly to stop that message &mdash; so SmartScreen will warn the first
+        time you run it, and you will have to choose <em>More info</em> and then
+        <em>Run anyway</em>. This page would rather say that before you download
+        than let Windows say it first.
+      </p>
+      <p>
+        So that the warning is the only thing you have to take on trust, the
+        exact bytes are published. Check them with
+        <code>Get-FileHash .\ProxyPilot.exe</code> in PowerShell, and read the
+        second opinion at the link below.
+      </p>
+      <p class="hash">
+        <b>SHA-256</b><br>
+        <span data-hash></span>
+      </p>
+      <a class="btn btn-ghost btn-sm" href="#" data-dl="virustotal">Scan report on VirusTotal</a>
     </div>
 
     <div class="dl">
@@ -770,7 +1013,14 @@ const RELEASE = {
   issues:  'https://github.com/moreiraio/ProxyPilot/issues',
   donate:  'https://www.paypal.me/vrmoreira',
   mail:    'vitor.moreira@gmail.com',
+  /* The published hash of the build the two links above hand out. It belongs
+     with them rather than typed into the markup, because the day it disagrees
+     with the release is the day the page stops being worth reading. VirusTotal
+     addresses a file by that same hash, so the report link is derived from it
+     and cannot drift from the binary it is vouching for. */
+  sha256:  'af03d492c8ee9a40b29d7b7d978633454bd5fb443b654cb3a7ac33da8ce2464e',
 };
+RELEASE.virustotal = 'https://www.virustotal.com/gui/file/' + RELEASE.sha256;
 
 /* Links and version strings, filled from the one table above. */
 for (const el of document.querySelectorAll('[data-version]')) {
@@ -782,6 +1032,9 @@ for (const el of document.querySelectorAll('[data-dl]')) {
   if (key !== 'mail' && key !== 'exe' && key !== 'cert') {
     el.rel = 'noopener';
   }
+}
+for (const el of document.querySelectorAll('[data-hash]')) {
+  el.textContent = RELEASE.sha256;
 }
 for (const el of document.querySelectorAll('[data-url]')) {
   const key = el.dataset.url;
